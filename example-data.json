@@ -1,0 +1,60 @@
+{
+	"id": 1,
+	"user": "Allen Hsieh",
+	"title": "The Ritz",
+  "type": "Tiny House",
+  "city": "Orlando, FL",
+	"self_checkin": true,
+	"superhost": true,
+	"descriptions": [
+    {
+      "title": "headline",
+      "text":  "Just because it's a tiny house doesn't mean you have to skimp on style! With an open floor plan and high ceilings, this tiny home is filled with light and air. The Ritz has high-end finishes, including a full-size, stainless steel fridge, glass stove cooktop and Italian tile throughout. With 3 memory foam beds, it sleeps 5 adults. Only 20 feet from beautiful Lake Fairview, this ritzy tiny home puts luxury at the top of your tiny house experience. The pictures say it all!"
+    },
+    {
+      "title": "The space",
+      "text":  "The first thing you notice when you walk into this tiny house is how spacious it is."
+    },
+    {
+      "title": "Guest access",
+      "text":  "Home access: Each tiny house has a secure combination door lock."
+    },
+    {
+      "title": "Interaction with guests",
+      "text":  "For your convenience, there is an on site manager that lives in the orange house next to the dock."
+    },
+    {
+      "title": "Other things to note",
+      "text":  "If there are any issues or problems with your tiny house, please contact us immediately, so that we can address them as soon as possible."
+    }
+  ],
+	"amenities": ["Kitchen", "Iron", "Free parking on premises", "Wifi", "Hangers", "Laptop friendly workspace"],
+	"rooms": [
+    {
+      "type_of_room": "Bedroom",
+      "furniture" : [
+        {
+        "type_of_furniture": "queen bed",
+        "qty": 1
+        },
+        {
+          "type_of_furniture": "double bed",
+          "qty": 1
+        },
+        {
+          "type_of_furniture": "single bed",
+          "qty": 2
+        }
+      ]
+    },
+    {
+      "type_of_room": "Common spaces",
+      "furniture" : [
+        {
+        "type_of_furniture": "couch",
+        "qty": 1
+        }
+      ]
+    }
+  ]
+}
