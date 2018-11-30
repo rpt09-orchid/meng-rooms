@@ -7,7 +7,9 @@
   "engines": {
     "node": ">=10.13.0"
   },
-  "scripts": {},
+  "scripts": {
+    "seed-database": "node ./database/seed.js"
+  },
   "dependencies": {
     "babel-core": "^6.26.3",
     "express": "^4.16.4",
