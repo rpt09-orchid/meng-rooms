@@ -2,15 +2,15 @@ const mongoose = require('mongoose');
 
 let roomSchema = mongoose.Schema({
   id: {type: Number, unique: true},
-  user: {type: String, required: true},
-  title: {type: String, required: true},
-  type: {type: String, required: true},
-  city: {type: String, required: true},
+  user: String,
+  title: String,
+  type: String,
+  city: String,
   selfCheckin: Boolean,
   superhost: Boolean,
-  descriptions: {type: Array, required: true},
+  descriptions: Array,
   amenities: Array,
-  rooms: {type: Array, required: true}
+  sleepingArrangements: Array
 });
 
 const RoomModel = mongoose.model('Room', roomSchema);

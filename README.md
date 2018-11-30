@@ -3,11 +3,9 @@
 > Project description
 
 ## Related Projects
-
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/rpt09-mulder/gallery
+  - https://github.com/rpt09-mulder/booking
+  - https://github.com/rpt09-mulder/reviews
 
 ## Table of Contents
 
