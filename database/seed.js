@@ -66,8 +66,6 @@ for (let i = 1; i < 101; i++) {
   Rooms.insertOne(roomDetail, (err, rooms) => {
     if (err) {
       console.log('error adding Room detail', err);
-    } else {
-      console.log('Room added');
     }
   });
 }

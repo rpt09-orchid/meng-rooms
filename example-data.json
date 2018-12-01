@@ -29,7 +29,7 @@
     }
   ],
 	"amenities": ["Kitchen", "Iron", "Free parking on premises", "Wifi", "Hangers", "Laptop friendly workspace"],
-	"rooms": [
+	"sleepingArrangements": [
     {
       "type_of_room": "Bedroom",
       "furniture" : [
@@ -44,15 +44,6 @@
         {
           "type_of_furniture": "single bed",
           "qty": 2
-        }
-      ]
-    },
-    {
-      "type_of_room": "Common spaces",
-      "furniture" : [
-        {
-        "type_of_furniture": "couch",
-        "qty": 1
         }
       ]
     }

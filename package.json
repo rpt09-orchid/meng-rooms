@@ -8,23 +8,29 @@
     "node": ">=10.13.0"
   },
   "scripts": {
+    "react-dev": "webpack -d --watch",
+    "server-dev": "nodemon server/index.js",
     "seed-database": "node ./database/seed.js"
   },
   "dependencies": {
-    "babel-core": "^6.26.3",
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "mongoose": "^5.3.14",
     "react": "^16.6.3",
     "react-dom": "^16.6.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "faker": "^4.1.0",
     "jest": "^23.6.0",
     "morgan": "^1.9.1",
-    "webpack": "^4.25.1"
+    "nodemon": "^1.18.7",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
   }
 }
