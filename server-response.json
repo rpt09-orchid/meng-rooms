@@ -1,0 +1,54 @@
+﻿{
+  "data": [
+    {
+      "descriptions": [
+        {
+          "title": "headline",
+          "text": "Consequatur quia iusto consectetur distinctio. Quidem et voluptatem. Nobis illum nihil velit doloremque veniam non debitis accusamus."
+        },
+        {
+          "title": "The space",
+          "text": "Sit commodi modi et quo voluptatem veritatis sed assumenda ex. Id beatae dolor vel totam quod. Sed consectetur cumque. Rerum velit distinctio quibusdam. Iste harum tempore deserunt porro quas est enim."
+        },
+        {
+          "title": "Guest Access",
+          "text": "Magni suscipit dignissimos non. Quidem laborum et voluptas qui. Aliquid sunt est quasi. Quas et laboriosam."
+        },
+        {
+          "title": "Interaction with guests",
+          "text": "Culpa possimus aut aut id. Atque officia ut eligendi. Soluta eius quae ducimus dolorem blanditiis qui illo sint. Maiores dolorem aut sunt saepe officiis omnis quia molestiae qui. Molestiae explicabo eligendi tempore optio placeat."
+        },
+        {
+          "title": "Other things to note",
+          "text": "Qui velit et ea ratione. Sed facere explicabo. Praesentium vero voluptas at error. Repellendus ducimus ex eaque omnis."
+        }
+      ],
+      "amenities": [
+        "Kitchen",
+        "Iron",
+        "Free parking on premises",
+        "Wifi",
+        "Hangers",
+        "Laptop friendly workspace"
+      ],
+      "sleepingArrangements": [
+        {
+          "typeOfRoom": "Bedroom",
+          "furniture": {
+            "typeOfFurniture": "queen bed",
+            "qty": 1
+          }
+        }
+      ],
+      "_id": "5c020dbc4ffecf0e78c363a7",
+      "id": 1,
+      "user": "Erica Bergnaum",
+      "title": "molestiae",
+      "type": "Shared Room",
+      "city": "Lake Elnora",
+      "selfCheckin": false,
+      "superhost": true,
+      "__v": 0
+    }
+  ]
+}

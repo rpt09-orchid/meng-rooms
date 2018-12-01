@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rooms');
 
 let roomSchema = mongoose.Schema({
   id: {type: Number, unique: true},
@@ -10,7 +11,7 @@ let roomSchema = mongoose.Schema({
   superhost: Boolean,
   descriptions: {type: Array, required: true},
   amenities: Array,
-  rooms: {type: Array, required: true}
+  sleepingArrangements: {type: Array, required: true}
 });
 
 const RoomModel = mongoose.model('Room', roomSchema);

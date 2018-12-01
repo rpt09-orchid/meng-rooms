@@ -1,8 +1,5 @@
-const mongoose = require('mongoose');
 const faker = require('faker');
 const Rooms = require('./models/room.js');
-
-mongoose.connect('mongodb://localhost/rooms');
 
 for (let i = 1; i < 101; i++) {
   let fakeDescriptions = [
