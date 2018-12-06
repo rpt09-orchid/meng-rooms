@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rooms');
 
 let roomSchema = mongoose.Schema({
   id: {type: Number, unique: true},
@@ -16,10 +15,6 @@ let roomSchema = mongoose.Schema({
 
 const RoomModel = mongoose.model('Room', roomSchema);
 
-const findAll = (callback) => {
-  RoomModel.find({}, callback);
-};
-
 const findByID = (id, callback) => {
   RoomModel.find({id: id}, callback);
 };
@@ -29,7 +24,6 @@ const insertOne = (room, callback) => {
 };
 
 module.exports = {
-  findAll,
   findByID,
   insertOne
 };

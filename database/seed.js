@@ -1,5 +1,16 @@
 const faker = require('faker');
-const Rooms = require('./models/room.js');
+const Room = require('./models/room.js');
+const mongoose = require('mongoose');
+
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rooms');
+let db = mongoose.connection;
+db.on('error', (err) => {
+  console.log('error connecting', err);
+});
+db.once('open', () => {
+  console.log('mongoose connected');
+});
+
 
 for (let i = 1; i < 101; i++) {
   let fakeDescriptions = [
@@ -60,9 +71,14 @@ for (let i = 1; i < 101; i++) {
     sleepingArrangements: fakeSleeping
   };
 
-  Rooms.insertOne(roomDetail, (err, rooms) => {
+  Room.insertOne(roomDetail, (err, room) => {
     if (err) {
       console.log('error adding Room detail', err);
     }
   });
+
+  if (i === 100) {
+    mongoose.disconnect();
+  }
 }
+
