@@ -31,18 +31,18 @@ describe('server', () => {
   });
 
   describe('requests to /rooms/:id', () => {
-    test('it should return JSON with a \'data\' key for route \'rooms/1\'', (done) => {
+    test('it should return JSON with a \'data\' key for route \'1/details\'', (done) => {
       Room.findByID.mockImplementation((id, cb) => {
         cb(null, [{id: 'this is a test'}]);
       });
-      request.get('/rooms/1').then((response) => {
+      request.get('/1/details').then((response) => {
         expect(response.body).toHaveProperty('data');
         done();
       });
     });
 
     test('it should only return a single item inside the data key', (done) => {
-      request.get('/rooms/1').then((response) => {
+      request.get('/1/details').then((response) => {
         expect(response.body.data.length).toBe(1);
         done();
       });
@@ -52,14 +52,14 @@ describe('server', () => {
       Room.findByID.mockImplementation((id, cb) => {
         cb('error', null);
       });
-      request.get('/rooms/1').then((response) => {
+      request.get('/1/details').then((response) => {
         expect(response.statusCode).toBe(404);
         done();
       });
     });
 
     test('response message for the invalid message should contain the id', (done) => {
-      request.get('/rooms/1').then((response) => {
+      request.get('/1/details').then((response) => {
         expect(response.body.error).toBe('ID 1 does not exist in database');
         done();
       });
