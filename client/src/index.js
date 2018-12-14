@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App.jsx';
+import DetailsApp from './components/DetailsApp.jsx';
+window.DetailsApp = DetailsApp;
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<DetailsApp />, document.getElementById('Details'));
