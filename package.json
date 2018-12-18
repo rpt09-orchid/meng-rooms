@@ -11,7 +11,10 @@
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/server.js",
     "seed-database": "node ./database/seed.js",
-    "test-jest": "jest"
+    "test-jest": "jest",
+    "build": "webpack",
+    "start": "node server/server.js",
+    "aws": "webpack && node server/server.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -19,6 +22,7 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "mongoose": "^5.3.14",
+    "morgan": "^1.9.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3"
   },
@@ -32,7 +36,6 @@
     "faker": "^4.1.0",
     "jest": "^23.6.0",
     "mocha": "^5.2.0",
-    "morgan": "^1.9.1",
     "nodemon": "^1.18.7",
     "supertest": "^3.3.0",
     "webpack": "^4.25.1",

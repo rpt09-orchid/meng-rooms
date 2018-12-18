@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DetailsApp from './components/DetailsApp.jsx';
-window.DetailsApp = DetailsApp;
+import RoomApp from './components/App.jsx';
+window.RoomApp = RoomApp;
 
-ReactDOM.render(<DetailsApp />, document.getElementById('Details'));
+ReactDOM.render(<RoomApp />, document.getElementById('Details'));
