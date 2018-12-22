@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import RoomApp from './components/App.jsx';
+import App from './components/App.jsx';
 
-ReactDOM.render(<RoomApp />, document.getElementById('Details'));
+ReactDOM.render(<App />, document.getElementById('details'));
