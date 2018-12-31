@@ -39,7 +39,7 @@ const SleepSummary = ({ sleepingArrangements, type }) => {
 
 SleepSummary.propTypes = {
   sleepingArrangements: PropTypes.arrayOf(PropTypes.object).isRequired,
-  type: PropTypes.string.isRequired
+  type: PropTypes.string.isRequired,
 };
 
 export default SleepSummary;

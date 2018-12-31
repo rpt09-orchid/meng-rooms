@@ -10,7 +10,7 @@ const roomSchema = mongoose.Schema({
   superhost: Boolean,
   descriptions: { type: Array, required: true },
   amenities: Array,
-  sleepingArrangements: { type: Array, required: true }
+  sleepingArrangements: { type: Array, required: true },
 });
 
 const RoomModel = mongoose.model('Room', roomSchema);
@@ -25,5 +25,5 @@ const insertOne = (room, callback) => {
 
 module.exports = {
   findByID,
-  insertOne
+  insertOne,
 };

@@ -8,7 +8,7 @@ const AmenitiesItem = ({ amenity }) => (
 );
 
 AmenitiesItem.propTypes = {
-  amenity: PropTypes.string.isRequired
+  amenity: PropTypes.string.isRequired,
 };
 
 export default AmenitiesItem;

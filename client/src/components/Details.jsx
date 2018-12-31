@@ -15,7 +15,7 @@ const Details = ({ descriptions }) => (
 );
 
 Details.propTypes = {
-  descriptions: PropTypes.arrayOf(PropTypes.object).isRequired
+  descriptions: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Details;

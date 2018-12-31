@@ -16,7 +16,7 @@ const Amenities = ({ amenities }) => (
 );
 
 Amenities.propTypes = {
-  amenities: PropTypes.arrayOf(PropTypes.string).isRequired
+  amenities: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default Amenities;

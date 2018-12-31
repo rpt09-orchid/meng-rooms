@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: null
+      data: null,
     };
   }
 
@@ -22,7 +22,7 @@ class App extends React.Component {
     axios.get(`http://rooms.4gk2mkr3wk.us-west-2.elasticbeanstalk.com/details${id}`).then((res) => {
       this.setState({
         // redundancy because axios returns data through res.data
-        data: res.data.data[0]
+        data: res.data.data[0],
       });
     });
   }
@@ -39,7 +39,7 @@ class App extends React.Component {
         selfCheckin,
         superhost,
         descriptions,
-        amenities
+        amenities,
       } = data;
 
       return (

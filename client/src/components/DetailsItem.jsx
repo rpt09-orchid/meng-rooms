@@ -15,8 +15,8 @@ const DetailsItem = ({ description: { title, text } }) => (
 DetailsItem.propTypes = {
   description: PropTypes.shape({
     title: PropTypes.string,
-    text: PropTypes.string
-  }).isRequired
+    text: PropTypes.string,
+  }).isRequired,
 };
 
 export default DetailsItem;

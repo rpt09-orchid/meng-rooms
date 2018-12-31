@@ -15,7 +15,7 @@ const Superhost = ({ user }) => (
 );
 
 Superhost.propTypes = {
-  user: PropTypes.string.isRequired
+  user: PropTypes.string.isRequired,
 };
 
 export default Superhost;

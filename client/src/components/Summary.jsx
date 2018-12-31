@@ -5,7 +5,7 @@ import Superhost from './Superhost';
 import SelfCheckin from './SelfCheckin';
 
 const Summary = ({
-  sleepingArrangements, type, user, selfCheckin, superhost
+  sleepingArrangements, type, user, selfCheckin, superhost,
 }) => (
   <div>
     <SleepSummary
@@ -23,7 +23,7 @@ Summary.propTypes = {
   type: PropTypes.string.isRequired,
   user: PropTypes.string.isRequired,
   selfCheckin: PropTypes.bool.isRequired,
-  superhost: PropTypes.bool.isRequired
+  superhost: PropTypes.bool.isRequired,
 };
 
 export default Summary;

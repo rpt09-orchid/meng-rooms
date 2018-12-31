@@ -12,7 +12,7 @@ const Heading = ({ type, title, city }) => (
 Heading.propTypes = {
   type: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  city: PropTypes.string.isRequired
+  city: PropTypes.string.isRequired,
 };
 
 export default Heading;
