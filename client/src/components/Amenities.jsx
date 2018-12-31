@@ -1,17 +1,22 @@
 import React from 'react';
-import AmenitiesItem from './AmenitiesItem.jsx';
+import PropTypes from 'prop-types';
+import AmenitiesItem from './AmenitiesItem';
 
-const Amenities = ({amenities}) => (
+const Amenities = ({ amenities }) => (
   <div>
     <h3>Amenities</h3>
-    {amenities.map((amenity, index) => (
+    {amenities.map(amenity => (
       <AmenitiesItem
         amenity={amenity}
-        key={index}
+        key={amenity}
       />
     ))
     }
   </div>
 );
+
+Amenities.propTypes = {
+  amenities: PropTypes.arrayOf(PropTypes.string).isRequired
+};
 
 export default Amenities;

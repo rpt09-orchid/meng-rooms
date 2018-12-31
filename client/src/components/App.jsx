@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import Heading from './Heading.jsx';
-import Summary from './Summary.jsx';
-import Details from './Details.jsx';
-import Amenities from './Amenities.jsx';
+import Heading from './Heading';
+import Summary from './Summary';
+import Details from './Details';
+import Amenities from './Amenities';
 
 class App extends React.Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class App extends React.Component {
       id = window.location.pathname;
     }
 
-    axios.get(`http://rooms.4gk2mkr3wk.us-west-2.elasticbeanstalk.com/details${id}`).then(res => {
+    axios.get(`http://rooms.4gk2mkr3wk.us-west-2.elasticbeanstalk.com/details${id}`).then((res) => {
       this.setState({
         // redundancy because axios returns data through res.data
         data: res.data.data[0]
@@ -28,8 +28,19 @@ class App extends React.Component {
   }
 
   render() {
-    if (this.state.data !== null) {
-      let {type, title, city, user, sleepingArrangements, selfCheckin, superhost, descriptions, amenities} = this.state.data;
+    const { data } = this.state;
+    if (data !== null) {
+      const {
+        type,
+        title,
+        city,
+        user,
+        sleepingArrangements,
+        selfCheckin,
+        superhost,
+        descriptions,
+        amenities
+      } = data;
 
       return (
         <div>
@@ -54,9 +65,14 @@ class App extends React.Component {
           />
         </div>
       );
-    } else {
-      return <Heading />;
     }
+    return (
+      <Heading
+        type="Default Type"
+        title="Default Title"
+        city="Default City"
+      />
+    );
   }
 }
 
