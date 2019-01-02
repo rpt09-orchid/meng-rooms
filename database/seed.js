@@ -59,6 +59,9 @@ for (let i = 1; i < 101; i++) {
   let roomDetail = {
     id: i,
     user: faker.name.findName(),
+    avatar: faker.random.arrayElement(
+      ['https://s3-us-west-2.amazonaws.com/rpt-09-mulder-avatars/person1.jpg','https://s3-us-west-2.amazonaws.com/rpt-09-mulder-avatars/person2.jpg', 'https://s3-us-west-2.amazonaws.com/rpt-09-mulder-avatars/person3.jpg']
+    ),
     title: faker.lorem.word(),
     type: faker.random.arrayElement(
       ['House', 'Tiny House', 'Apartment', 'Private Room', 'Shared Room', 'RV']
@@ -77,8 +80,4 @@ for (let i = 1; i < 101; i++) {
     }
   });
 
-  if (i === 100) {
-    mongoose.disconnect();
-  }
 }
-
