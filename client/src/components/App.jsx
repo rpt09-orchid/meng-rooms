@@ -4,6 +4,7 @@ import Heading from './Heading';
 import Summary from './Summary';
 import Details from './Details';
 import Amenities from './Amenities';
+import '../../styles/App.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -43,7 +44,7 @@ class App extends React.Component {
       } = data;
 
       return (
-        <div>
+        <div id="main">
           <Heading
             type={type}
             title={title}

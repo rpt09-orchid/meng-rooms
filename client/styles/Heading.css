@@ -1,0 +1,33 @@
+.heading {
+  padding-bottom: 20px;
+  /* background-color: red; */
+  display: inline-block;
+}
+
+.type {
+  text-transform: uppercase;
+  color: #531210;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.title {
+  text-transform: capitalize;
+  margin: 0px;
+  word-wrap: break-word;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.125em;
+  color: #484848;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.city {
+  margin: 0px;
+  word-wrap: break-word;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.375em;
+  color: #484848;
+}

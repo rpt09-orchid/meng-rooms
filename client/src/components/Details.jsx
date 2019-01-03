@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DetailsItem from './DetailsItem';
-
+import '../../styles/Details.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 class Details extends React.Component {
   constructor(props) {
@@ -26,8 +28,8 @@ class Details extends React.Component {
         <div>
           <DetailsItem description={descriptions[0]} />
           <br />
-          <div onClick={this.handleReadMore}>
-            Read More about the space
+          <div className="readBtn" onClick={this.handleReadMore}>
+            Read More about the space <FontAwesomeIcon icon={faChevronDown} />
           </div>
         </div>
       );
@@ -42,8 +44,8 @@ class Details extends React.Component {
         ))
         }
         <br />
-        <div onClick={this.handleReadMore}>
-          Hide
+        <div className="readBtn" onClick={this.handleReadMore}>
+          Hide <FontAwesomeIcon icon={faChevronUp} />
         </div>
       </div>
     );
