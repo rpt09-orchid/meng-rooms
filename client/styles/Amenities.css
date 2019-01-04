@@ -1,0 +1,22 @@
+.amenities-component {
+  margin-top: 10px;
+}
+
+.header {
+  font-weight: 800;
+}
+
+.column {
+  display: inline-block;
+  box-sizing: border-box;
+  padding-top: 5px;
+}
+
+.icon {
+  margin-right: 10px;
+  color: darkgray;
+}
+
+.amenity {
+  margin: 15px 0px 15px 15px;
+}

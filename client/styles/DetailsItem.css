@@ -1,0 +1,15 @@
+.header {
+  word-wrap: break-word;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.375em;
+  color: #484848;
+}
+
+.text {
+  word-wrap: break-word;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.375em;
+  color: #484848;
+}

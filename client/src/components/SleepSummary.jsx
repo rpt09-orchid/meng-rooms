@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../../styles/SleepSummary.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
+import '../../styles/SleepSummary.css';
 
 const SleepSummary = ({ sleepingArrangements, type }) => {
   let guests = 0;
@@ -17,7 +17,7 @@ const SleepSummary = ({ sleepingArrangements, type }) => {
 
   return (
     <div>
-      <div><FontAwesomeIcon icon={faHome} />{type}</div>
+      <div className="header"><FontAwesomeIcon icon={faHome} />{type}</div>
       <div>
         <span className="item">
           {guests}

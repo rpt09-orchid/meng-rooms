@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../../styles/DetailsItem.css';
 
 const DetailsItem = ({ description: { title, text } }) => (
   <div>
-    <h3>
+    <div className="header">
       {title !== 'headline' && title}
-    </h3>
-    <div>
+    </div>
+    <div className="text">
       {text}
     </div>
   </div>

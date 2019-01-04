@@ -1,6 +1,12 @@
-.readBtn {
+.details {
+  box-sizing: border-box;
+  padding-top: 5px;
+}
+
+.read-btn {
   color: #008489;
   font-size: 16px;
   font-weight: 600;
   line-height: 1.375em;
+  cursor: pointer;
 }

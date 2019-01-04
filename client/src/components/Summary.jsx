@@ -12,9 +12,11 @@ const Summary = ({
       sleepingArrangements={sleepingArrangements}
       type={type}
     />
-    {superhost && <Superhost user={user} />}
     {selfCheckin && <SelfCheckin />}
+    {superhost && <Superhost user={user} />}
+    <div className="line-break"></div>
   </div>
+
 );
 
 
