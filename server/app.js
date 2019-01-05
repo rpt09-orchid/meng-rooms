@@ -7,15 +7,19 @@ const Room = require('../database/models/room.js');
 
 const app = express();
 
-app.use(morgan('dev'));
+if (process.env.NODE_ENV === "production") {
+  app.use(morgan('tiny'));
+} else {
+  app.use(morgan('dev'));
+}
 
 app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, '/../client/dist')));
-app.use('/:id', express.static(path.join(__dirname, '/../client/dist')));
+app.use(express.static(path.join(__dirname, '/../client/dist'), {maxAge: '1y'}));
+app.use('/:id', express.static(path.join(__dirname, '/../client/dist'), {maxAge: '1y'}));
 
 app.get('/details/:id', (req, res) => {
   Room.findByID(req.params.id, (err, roomInfo) => {

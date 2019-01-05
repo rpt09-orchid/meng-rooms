@@ -6,6 +6,8 @@ import Details from './Details';
 import Amenities from './Amenities';
 import '../../styles/App.css';
 
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -16,11 +18,15 @@ class App extends React.Component {
 
   componentDidMount() {
     let id = '/1';
+    let URL = 'http://localhost:3001/details';
+    if (process.env.NODE_ENV === 'production') {
+      URL = 'http://rooms.4gk2mkr3wk.us-west-2.elasticbeanstalk.com/details'
+    }
     if (window.location.pathname !== '/') {
       id = window.location.pathname;
     }
 
-    axios.get(`http://rooms.4gk2mkr3wk.us-west-2.elasticbeanstalk.com/details${id}`).then((res) => {
+    axios.get(`${URL}${id}`).then((res) => {
       this.setState({
         // redundancy because axios returns data through res.data
         data: res.data.data[0],
@@ -68,11 +74,7 @@ class App extends React.Component {
       );
     }
     return (
-      <Heading
-        type="Default Type"
-        title="Default Title"
-        city="Default City"
-      />
+      <div>Loading...</div>
     );
   }
 }

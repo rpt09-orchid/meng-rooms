@@ -2,6 +2,10 @@
   font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
 }
 
+#main {
+  margin-top: 65px
+}
+
 .line-break {
   content: " ";
   background-color: rgb(236, 234, 234);

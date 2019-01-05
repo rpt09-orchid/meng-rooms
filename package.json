@@ -9,12 +9,11 @@
   },
   "scripts": {
     "react-dev": "webpack -d --watch",
-    "server-dev": "nodemon server/server.js",
+    "server-dev": "NODE_ENV=development nodemon server/server.js",
     "seed-database": "node ./database/seed.js",
     "test-jest": "jest",
-    "build": "webpack",
-    "start": "node server/server.js",
-    "aws": "webpack && node server/server.js"
+    "build": "webpack -p",
+    "start": "node server/server.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.12",

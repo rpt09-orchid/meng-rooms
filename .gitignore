@@ -22,7 +22,6 @@ coverage
 
 # Compiled Dirs (http://nodejs.org/api/addons.html)
 build/
-client/dist/app.js
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
