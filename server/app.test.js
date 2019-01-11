@@ -17,7 +17,7 @@ describe('server', () => {
 
     test('it should respond with the index.html', (done) => {
       request.get('/').then((response) => {
-        expect(response.text).toContain('id="app"');
+        expect(response.text).toContain('id="details"');
         done();
       });
     });

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const app = require('./app.js');
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rooms');
+mongoose.connect((process.env.MONGODB_URI || 'mongodb://localhost/rooms'), { useNewUrlParser: true });
 
 const db = mongoose.connection;
 db.on('error', (err) => {
