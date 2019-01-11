@@ -18,8 +18,8 @@
 1. [Installation](#Installation)
 1. [API Routes](#API-Routes)
 1. [Examples](#Examples)
-   - [/details/:id](#/details/:id)
-   - [/users/:id](#/users/:id)
+   - [/details/:id](#detailsid)
+   - [/users/:id](#usersid)
 1. [Development](#Development)
 
 ## Requirements
