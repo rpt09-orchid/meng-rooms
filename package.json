@@ -1,6 +1,6 @@
 {
   "name": "rooms",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Rooms component for an AirBnB-Clone",
   "author": "Allen Hsieh",
   "license": "MIT",
