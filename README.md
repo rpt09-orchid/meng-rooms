@@ -3,7 +3,6 @@
 > Rooms Service for an AirBnB-Clone to practice the MERN (Mongo-Express-React-Node) stack with Service Oriented Architecture.
 
 ![](example.gif)
-
 ## Related Projects
 
 [[Proxy]](https://github.com/rpt09-mulder/proxy-allen) with all services running together
@@ -22,7 +21,6 @@
 1. [Examples](#Examples)
    - [/details/:id](#detailsid)
    - [/users/:id](#usersid)
-1. [Development](#Development)
 
 ## Requirements
 
