@@ -1,6 +1,8 @@
 # Project Name
 
-> Rooms component for an AirBnB-Clone
+> Rooms component for an AirBnB-Clone to practice the MERN (Mongo-Express-React-Node) stack
+
+![](example.gif)
 
 ## Related Projects
 
