@@ -1,14 +1,14 @@
-# Project Name
+# Project
 
-> Rooms component for an AirBnB-Clone to practice the MERN (Mongo-Express-React-Node) stack
+> Rooms Service for an AirBnB-Clone to practice the MERN (Mongo-Express-React-Node) stack with Service Oriented Architecture.
 
 ![](example.gif)
 
 ## Related Projects
 
-[[Proxy]](https://github.com/rpt09-mulder/proxy-allen) with all components running together
+[[Proxy]](https://github.com/rpt09-mulder/proxy-allen) with all services running together
 
-- [Rooms (Current Component)](https://github.com/rpt09-mulder/rooms)
+- [Rooms (Current Service)](https://github.com/rpt09-mulder/rooms)
 - [Gallery](https://github.com/rpt09-mulder/gallery)
 - [Booking](https://github.com/rpt09-mulder/booking)
 - [Reviews](https://github.com/rpt09-mulder/reviews)
