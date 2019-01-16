@@ -18,9 +18,7 @@ class App extends React.Component {
     let id = '/1';
     let URL = 'http://localhost:3001/details';
     if (process.env.NODE_ENV === 'production') {
-      URL = 'http://rooms.4gk2mkr3wk.us-west-2.elasticbeanstalk.com/details'
-    }
-    if (process.env.HOST === 'onheroku') {
+      // URL = 'http://rooms.4gk2mkr3wk.us-west-2.elasticbeanstalk.com/details'
       URL = 'https://firebnb-rooms.herokuapp.com/details'
     }
     if (window.location.pathname !== '/') {
