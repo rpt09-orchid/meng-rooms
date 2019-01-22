@@ -1,6 +1,7 @@
 const faker = require('faker');
 const Room = require('./models/room.js');
 const mongoose = require('mongoose');
+const fs = require('fs');
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rooms');
 let db = mongoose.connection;
@@ -12,7 +13,13 @@ db.once('open', () => {
 });
 
 
-for (let i = 1; i < 101; i++) {
+let uniqueRecords = 1001;
+let idCounter = 1;
+
+var finalArray = [];
+
+while ( idCounter < uniqueRecords ){
+
   let fakeDescriptions = [
     {
       title: 'headline',
@@ -57,7 +64,7 @@ for (let i = 1; i < 101; i++) {
   ];
 
   let roomDetail = {
-    id: i,
+    id: idCounter,
     user: faker.name.findName(),
     avatar: faker.random.arrayElement(
       ['https://s3-us-west-2.amazonaws.com/rpt-09-mulder-avatars/person1.jpg','https://s3-us-west-2.amazonaws.com/rpt-09-mulder-avatars/person2.jpg', 'https://s3-us-west-2.amazonaws.com/rpt-09-mulder-avatars/person3.jpg']
@@ -74,10 +81,73 @@ for (let i = 1; i < 101; i++) {
     sleepingArrangements: fakeSleeping
   };
 
-  Room.insertOne(roomDetail, (err, room) => {
-    if (err) {
-      console.log('error adding Room detail', err);
-    }
-  });
+  var stringRoomDetail = JSON.stringify(roomDetail);
+  finalArray.push(stringRoomDetail);
 
+  idCounter++;
 }
+
+
+let outputLoc = 'database/seedFile/testSeed.json';
+
+let writeOpenBracket = () => {
+  return new Promise(function(resolve, reject){
+  fs.writeFile(outputLoc, '[',(err) => {
+    if (err) throw err;
+    console.log('Open bracket has been saved!');
+    resolve();
+  });
+})}
+
+let writeComma = () => {
+  return new Promise(function(resolve, reject){
+  fs.appendFile(outputLoc, ',',(err) => {
+    if (err) throw err;
+    console.log('Comma has been saved!');
+    resolve();
+  });
+})};
+
+let writeContent = (round) =>{
+  return new Promise (function(resolve, reject) {
+
+    if(round !== 1){
+      for(let i = 0; i < uniqueRecords - 1; i++){
+        let currRecord = JSON.parse(finalArray[i]);
+        currRecord.id = idCounter;
+        finalArray[i] = JSON.stringify(currRecord);
+        idCounter++;
+      }
+    }
+
+    fs.appendFile(outputLoc, finalArray,(err) => {
+      if (err) throw err;
+      console.log('Contents have been saved!');
+      resolve();
+    });
+})};
+
+let writeContents = async () => {
+  for (let round = 1; round < 10001; round++) {
+    round !==1 && await writeComma();
+    await writeContent(round);
+    console.log(round);
+  }
+}
+
+let writeCloseBracket = () => {
+  return new Promise(function(resolve, reject){
+  fs.appendFile(outputLoc, ']',(err) => {
+    if (err) throw err;
+    console.log('Closed bracket has been saved!');
+    resolve();
+  });
+})};
+
+let writeEverything = async () => {
+  await writeOpenBracket();
+  await writeContents();
+  await writeCloseBracket();
+}
+
+writeEverything();
