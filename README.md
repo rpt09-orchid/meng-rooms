@@ -18,3 +18,12 @@ There are a couple of documents that have embedded sub documents.  If my goal is
 Used following upload command: `mongoimport --db rooms --collection rooms --type json --file /Users/mengsung/Desktop/HackReactor/rpt09-sdc/meng-rooms/database/seedFile/testSeed.json --jsonArray --numInsertionWorkers 2`
 
 * Going to try the above step but convert from json to csv as the .json file is 15gb :(
+
+  `mongoimport --db rooms --collection rooms --type csv --file /Users/mengsung/Desktop/HackReactor/rpt09-sdc/meng-rooms/database/seedFile/testSeed.csv --headerline --numInsertionWorkers 2`\
+* Two gotchyas to consider -ids have to run consecutively
+
+* Have to eliminate .csv possibility because, you cannot directly import a csv that reflects nested (array) sub documents
+
+* back to json
+
+

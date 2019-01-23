@@ -14,7 +14,7 @@ db.once('open', () => {
 });
 
 
-let uniqueRecords = 1001;
+let uniqueRecords = 3;
 let idCounter = 1;
 
 var finalArray = [];
@@ -77,19 +77,22 @@ while ( idCounter < uniqueRecords ){
     city: faker.address.city(),
     selfCheckin: faker.random.boolean(),
     superhost: faker.random.boolean(),
-    descriptions: fakeDescriptions,
+    descriptions: JSON.stringify(fakeDescriptions),
     amenities: ['Kitchen', 'Iron', 'Free parking on premises', 'Wifi', 'Hangers', 'Laptop friendly workspace'],
-    sleepingArrangements: fakeSleeping
+    sleepingArrangements: JSON.stringify(fakeSleeping)
   };
 
-  var stringRoomDetail = JSON.stringify(roomDetail);
-  finalArray.push(stringRoomDetail);
+  // var stringRoomDetail = JSON.stringify(roomDetail);
+
+  // finalArray.push(stringRoomDetail);
+  finalArray.push(roomDetail);
+  console.log('FINAL', finalArray);
 
   idCounter++;
 }
 
 
-let outputLoc = 'database/seedFile/testSeed.json';
+let outputLoc = 'database/seedFile/testSeed.csv';
 
 let writeOpenBracket = () => {
   return new Promise(function(resolve, reject){
@@ -120,12 +123,6 @@ let writeContent = (round) =>{
     //     idCounter++;
     //   }
     // }
-    let json2csvCallback = function (err, csv) {
-      if (err) throw err;
-      console.log(csv);
-    };
-
-    converter.json2csv(documents, json2csvCallback);
 
     fs.appendFile(outputLoc, finalArray,(err) => {
       if (err) throw err;
@@ -134,12 +131,31 @@ let writeContent = (round) =>{
     });
 })};
 
+
+
 let writeContents = async () => {
-  for (let round = 1; round < 3; round++) {
-    round !==1 && await writeComma();
-    await writeContent(round);
-    console.log(round);
-  }
+  console.log(finalArray);
+var sample =
+  [ { id: 1,
+    sleepingArrangements:
+     [{"typeOfRoom":"Bedroom","furniture":{"typeOfFurniture":"single bed","qty":2}}]
+ }];
+
+
+  let json2csvCallback = function (err, csv) {
+    if (err) { throw err };
+    fs.writeFile(outputLoc, csv,(err) => {
+      if (err) throw err;
+      console.log('CSV has been saved!');
+    });
+  };
+
+  converter.json2csv(sample, json2csvCallback);
+  // for (let round = 1; round < 3; round++) {
+  //   round !==1 && await writeComma();
+  //   await writeContent(round);
+  //   console.log(round);
+  // }
 }
 
 let writeCloseBracket = () => {
