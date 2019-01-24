@@ -65,7 +65,7 @@ Write to File w. Parsed Ids
 | Unique (10,000,000) 	|                                              	|                                               	|
 | Unique (1,000)      	| 5 minutes (                                  	|                                               	|
 
-| First Header  | Second Header |
+|  | Second Header |
 | ------------- | ------------- |
 | Content Cell  | Content Cell  |
 | Content Cell  | Content Cell  |
