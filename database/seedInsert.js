@@ -88,6 +88,7 @@ var randoGenArrayFactory = () => {
     idCounter++;
     i++;
   }
+  console.log(`Round: ${round} data generated`);
 }
 
 
@@ -99,7 +100,7 @@ let insertionFactory = () => {
         console.log(error);
       } else {
 
-        console.log('success');
+        console.log(`Insertion success - Round ${round}`);
         resolve()
       }
     });
