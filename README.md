@@ -28,9 +28,9 @@ Used following upload command: `mongoimport --db rooms --collection rooms --type
 
 
 
-**A La Carte Solutions:**
+**A La Carte Solutions: (must select one of each)**
 
-A La Carte - Write to File (must pair with A La Carte Insert Id AND A La Carte Import)
+A La Carte - Write to File
 |                     	| AppendFile (no Ids) 	| WriteStream (no Ids) 	|
 |---------------------	|---------------------	|----------------------	|
 | Unique (10,000,000) 	|                     	|                      	|
