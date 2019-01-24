@@ -1,4 +1,4 @@
-#SDC Project for Rooms Service
+# SDC Project for Rooms Service
 
 ## Log
 Reviewing Legacy Code:
@@ -30,19 +30,29 @@ Used following upload command: `mongoimport --db rooms --collection rooms --type
 
 **A La Carte Solutions: (must select one of each)**
 
+
 A La Carte - Write to File
+
+
+
 |                     	| AppendFile (no Ids) 	| WriteStream (no Ids) 	|
 |---------------------	|---------------------	|----------------------	|
 | Unique (10,000,000) 	|                     	|                      	|
 | Unique (1,000)      	|                     	|                      	|
 
+
+
+
 A La Carte - Insert Id
+
 |                                	| Add id in JSON File 	| Add id in MongoDB 	|
-|--------------------------------	|---------------------	|-------------------	|
+| ------------------------------- | ---------------------	| ------------------- |
 | 1000 (must multiply by 10,000) 	|                     	|                   	|
 | 10,000,000                     	|                     	|                   	|
 
+
 A La Carte - Import
+
 |                            	| (no Ids) MongoImport(JSON) 	| (Ids) / MongoImport(JSON) 	|
 |----------------------------	|----------------------------	|---------------------------	|
 | 1000 (must multiply by 10) 	|                            	|                           	|
@@ -53,6 +63,7 @@ A La Carte - Import
 **Full Meal / Comprehensive Solutions:**
 
 Insert Many
+
 |                     	| Batched (1000) 	| Batched (10,000) 	|
 |---------------------	|----------------	|------------------	|
 | Unique (10,000,000) 	|      12:22    	|                  	|
@@ -60,12 +71,9 @@ Insert Many
 
 
 Write to File w. Parsed Ids
+
 |                     	| AppendFile w. Parsed Ids / MongoImport(JSON) 	| WriteStream w. Parsed Ids / MongoImport(JSON) 	|
 | ---------------------	| --------------------------------------------- | ----------------------------------------------- |
 | Unique (10,000,000) 	|                                              	|                                               	|
 | Unique (1,000)      	| 5 minutes (                                  	|                                               	|
 
-|  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
