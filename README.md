@@ -1,5 +1,15 @@
 # Systems Design Project for Rooms Service
 
+The focus of this project is to take the legacy project [`Rooms Service`]((https://github.com/rpt09-mulder/rooms)) and optimize back-end database and querying performance.
+
+## Table Of Contents:
++ [Related Projects](#Related-Projects)
++ [Requirements](#Requirements)
++ [Installation](#Installation)
++ [Goal 1 - Generate 10 Million Records](#Goal-1---Generate-10-Million-Records)
++ [Glossary](#Glossary)
+
+
 ## Related Projects
 - [Rooms (FEC)](https://github.com/rpt09-mulder/rooms)
 
@@ -17,10 +27,15 @@ After cloning the project, go to the root directory then install all required de
 npm install
 ```
 
-If you haven't already, start your MongoDB service then seed the database by running
+If you haven't already, start your MongoDB service then seed the database with 100 records by running
 
 ```sh
 npm run seed-database
+```
+
+[Optional] If you would like to seed 10 million records instead of 100 records, you may do so by running
+```sh
+npm run seed-large-database
 ```
 
 Build the webpack bundle by running
@@ -39,7 +54,9 @@ and finally, on your browser go to http://localhost:3001
 
 ## Log
 
-### Goal1 - Generate 10 Million Total Records (1000 Unique)
+###  Goal 1 - Generate 10 Million Records
+
+Of note, for this goal - I wanted a minimum of 1000 records to be unique.
 
 Reviewing the legacy code, I noticed:
 + Currently, the seed script is only generating only 100 unique records.
@@ -57,7 +74,7 @@ What I Did / Learned:
 <br/>
 
 
-# Testing Matrix
+#### Testing Matrix
 Please note, results seen in the same table were experiments done on the same day.  For abbreviated terms, see the [Glossary](#Glossary).
 
 ### Insert Many, Using Mongo Driver Insertion ([seedInsertTestUnique10mil.js](database/seedTestFiles/seedInsertTestUnique10mil.js)), [seedInsertTestUnique1k.js](database/seedTestFiles/seedInsertTestUnique1k.js))
