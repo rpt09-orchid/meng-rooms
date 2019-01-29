@@ -1,12 +1,12 @@
 const supertest = require('supertest');
 const app = require('./app.js');
+
 const request = supertest(app);
 
 jest.mock('../database/models/room.js');
 const Room = require('../database/models/room.js');
 
 describe('server', () => {
-
   describe('requests to /', () => {
     test('it should respond to a GET request', (done) => {
       request.get('/').then((response) => {
@@ -33,7 +33,7 @@ describe('server', () => {
   describe('requests to /details/:id', () => {
     test('it should return JSON with a \'data\' key for route \'1/details\'', (done) => {
       Room.findByID.mockImplementation((id, cb) => {
-        cb(null, [{id: 'this is a test'}]);
+        cb(null, [{ id: 'this is a test' }]);
       });
       request.get('/details/1').then((response) => {
         expect(response.body).toHaveProperty('data');

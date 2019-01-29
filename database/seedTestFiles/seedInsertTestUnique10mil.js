@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 // const fs = require('fs');
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rooms');
-let db = mongoose.connection;
+const db = mongoose.connection;
 db.on('error', (err) => {
   console.log('error connecting', err);
 });
@@ -13,21 +13,20 @@ db.once('open', () => {
 });
 
 
-var idCounter = 1;
-var finalArray;
-var noDocsInSet = 1000;
-var round = 1;
+let idCounter = 1;
+let finalArray;
+const noDocsInSet = 1000;
+let round = 1;
 
-var randoGenArrayFactory = () => {
+const randoGenArrayFactory = () => {
   finalArray = [];
 
   let i = 0;
-  while ( i < noDocsInSet){
-
-    let roomDetail = {
+  while (i < noDocsInSet) {
+    const roomDetail = {
       id: idCounter,
       type: faker.random.arrayElement(
-        ['House', 'Tiny House', 'Apartment', 'Private Room', 'Shared Room', 'RV']
+        ['House', 'Tiny House', 'Apartment', 'Private Room', 'Shared Room', 'RV'],
       ),
     };
 
@@ -35,36 +34,32 @@ var randoGenArrayFactory = () => {
     idCounter++;
     i++;
   }
-}
+};
 
 
-let insertionFactory = () => {
+const insertionFactory = () => {
   randoGenArrayFactory();
-  return new Promise(function(resolve, reject){
-    db.collection('rooms').insertMany( finalArray, function(error) {
-      if(error) {
+  return new Promise(((resolve, reject) => {
+    db.collection('rooms').insertMany(finalArray, (error) => {
+      if (error) {
         console.log(error);
       } else {
         console.log(`Insertion success - Round ${round}`);
-        resolve()
+        resolve();
       }
     });
-  })
-}
+  }));
+};
 
-let doEverything= async () => {
-  let startTime = Date.now();
-  while(round < 10001){
+const doEverything = async () => {
+  const startTime = Date.now();
+  while (round < 10001) {
     await insertionFactory();
     round++;
   }
   console.log(`\x1b[32m${(Date.now() - startTime) / 1000}s\x1b[0m`);
-  await db.close()
-}
+  await db.close();
+};
 
 
 doEverything();
-
-
-
-
