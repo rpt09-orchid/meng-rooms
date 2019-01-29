@@ -11,6 +11,7 @@
     "react-dev": "webpack -d --watch",
     "server-dev": "NODE_ENV=development nodemon server/server.js",
     "seed-database": "node ./database/seed.js",
+    "seed-large-database": "node ./database/seedInsert.js",
     "test-jest": "jest",
     "build": "webpack -p",
     "start": "node server/server.js"
@@ -23,7 +24,6 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
-    "json-2-csv": "^3.1.1",
     "mongoose": "^5.3.14",
     "morgan": "^1.9.1",
     "prop-types": "^15.6.2",

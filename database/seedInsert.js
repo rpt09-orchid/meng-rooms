@@ -1,7 +1,5 @@
-const faker = require('faker');
-const Room = require('./models/room.js');
 const mongoose = require('mongoose');
-const fs = require('fs');
+const seedUtilities = require('./seedUtilities');
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rooms');
 let db = mongoose.connection;
@@ -12,94 +10,29 @@ db.once('open', () => {
   console.log('mongoose connected');
 });
 
-
-var idCounter = 1;
 var finalArray;
-var noDocsInSet = 1000;
+var insertedArray;
+var noDocsInSet = 2;
 var round = 1;
+let idCounter = 1;
 
-var randoGenArrayFactory = () => {
-  finalArray = [];
-
-  let i = 0;
-  while ( i < noDocsInSet){
-    let fakeDescriptions = [
-      {
-        title: 'headline',
-        text: faker.lorem.paragraph()
-      },
-      {
-        title: 'The space',
-        text: faker.lorem.paragraph()
-      },
-      {
-        title: 'Guest Access',
-        text: faker.lorem.paragraph()
-      },
-      {
-        title: 'Interaction with guests',
-        text: faker.lorem.paragraph()
-      },
-      {
-        title: 'Other things to note',
-        text: faker.lorem.paragraph()
-      }
-    ];
-
-    let fakeSleeping = [
-      {
-        typeOfRoom: 'Bedroom',
-        furniture: faker.random.arrayElement([
-          {
-            typeOfFurniture: 'queen bed',
-            qty: faker.random.number({min: 1, max: 2})
-          },
-          {
-            typeOfFurniture: 'double bed',
-            qty: faker.random.number({min: 1, max: 2})
-          },
-          {
-            typeOfFurniture: 'single bed',
-            qty: faker.random.number({min: 1, max: 3})
-          }
-        ])
-      }
-    ];
-
-    let roomDetail = {
-      id: idCounter,
-      user: faker.name.findName(),
-      avatar: faker.random.arrayElement(
-        ['https://s3-us-west-2.amazonaws.com/rpt-09-mulder-avatars/person1.jpg','https://s3-us-west-2.amazonaws.com/rpt-09-mulder-avatars/person2.jpg', 'https://s3-us-west-2.amazonaws.com/rpt-09-mulder-avatars/person3.jpg']
-      ),
-      title: faker.lorem.word(),
-      type: faker.random.arrayElement(
-        ['House', 'Tiny House', 'Apartment', 'Private Room', 'Shared Room', 'RV']
-      ),
-      city: faker.address.city(),
-      selfCheckin: faker.random.boolean(),
-      superhost: faker.random.boolean(),
-      descriptions: fakeDescriptions,
-      amenities: ['Kitchen', 'Iron', 'Free parking on premises', 'Wifi', 'Hangers', 'Laptop friendly workspace'],
-      sleepingArrangements: fakeSleeping
-    };
-
-    finalArray.push(roomDetail);
-    idCounter++;
-    i++;
-  }
-  console.log(`Round: ${round} data generated`);
-}
-
-
-let insertionFactory = () => {
-  randoGenArrayFactory();
+let parseFactory = () => {
   return new Promise(function(resolve, reject){
-    db.collection('rooms').insertMany( finalArray, function(error, doc) {
+    let i = 0;
+    insertedArray = JSON.parse(JSON.stringify(finalArray.slice()));
+    while ( i < noDocsInSet){
+      insertedArray[i].id = idCounter++;
+      i++;
+    }
+    resolve();
+  })
+}
+let insertionFactory = () => {
+  return new Promise(function(resolve, reject){
+    db.collection('rooms').insertMany(insertedArray, function(error, doc) {
       if(error) {
         console.log(error);
       } else {
-
         console.log(`Insertion success - Round ${round}`);
         resolve()
       }
@@ -107,24 +40,17 @@ let insertionFactory = () => {
   })
 }
 
-// let doEverything= async () => {
-//   for(let round = 0; round < 3; round++){
-//     console.log(round);
-//     await insertionFactory(round);
-//   }
-// }
-
 let doEverything= async () => {
-
+  let startTime = Date.now();
+  finalArray = seedUtilities.randoGenArrayFactory(noDocsInSet);
   while(round < 10001){
+    await parseFactory();
     await insertionFactory();
     round++;
-    console.log(round);
   }
+  console.log(`\x1b[32m${(Date.now() - startTime) / 1000}s\x1b[0m`);
+  await db.close()
 }
 
+
 doEverything();
-
-
-
-
