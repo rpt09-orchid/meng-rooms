@@ -12,7 +12,7 @@ db.once('open', () => {
 
 let finalArray;
 let insertedArray;
-const noDocsInSet = 2;
+const noDocsInSet = 1000;
 let round = 1;
 let idCounter = 1;
 

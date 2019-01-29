@@ -7,8 +7,7 @@ The focus of this project is to take the legacy project [`Rooms Service`]((https
 + [Requirements](#Requirements)
 + [Installation](#Installation)
 + [Goal 1 - Generate 10 Million Records](#Goal-1---Generate-10-Million-Records)
-+ [Glossary](#Glossary)
-
++ [Backlog / Noted Opportunities](#Backlog-/-Noted-Opportunities)
 
 ## Related Projects
 - [Rooms (FEC)](https://github.com/rpt09-mulder/rooms)
@@ -64,7 +63,7 @@ Reviewing the legacy code, I noticed:
 + If I were to generate 1000 unique records and then duplicate those unique records 10,000 times, the tradeoff is - I would have to parse the existing unique `id` field starting at `id: 1001` / onwards and inject sequential numbers (so the `id` field can maintain it's uniqueness).
 
 What I Did / Learned:
-+ Tried using the `createcsvwriter` npm package, but realized mongoimport cannot create a nested array upon import (it can create nested objects if you use dot notation in the csv header) from a .csv.  On a fun note, you can import nested objects upon import with a .csv file (just make sure the csv headers are titled correctly with dot notation).  At this point, exporting / importing a .csv file is off the table.
++ Tried using the `createcsvwriter` npm package, but realized mongoimport cannot create a nested array upon import.  On a fun note, you can import nested objects upon import with a .csv file (just make sure the csv headers are titled correctly with dot notation).  At this point, exporting / importing a .csv file is off the table.
 + Used fs module (writeFile and appendFile functions) to write to an external json file where nested arrays can be maintained.  Noticed that writefile will not write my final array / include the initial open / close brackets - had to manually write that in (using promises).
 + Exporting 10,000,000 records into .json yielded a 15gb file.
 + **At the end, my selected solution, was using the [`insertMany`](/Users/mengsung/Desktop/HackReactor/rpt09-sdc/meng-rooms/database/seedInsert.js) strategy as oppossed to the [json import](database/seedJson.js) strategy.  The `insertMany` strategy did not yield a 15gb file and was a little bit faster than the json import strategy.**
@@ -147,3 +146,7 @@ When I used the `Mongo Driver`, I did not validate the data with a model during 
 + **Mongoose**
 
 When I used the `Mongoose`, I validated the data with a model during my insertion.  In other words, during the `insertMany` function, I used the following syntax: `Room.RoomModel.insertMany(insertedArray, function(error) {...})`.
+
+
+## Backlog / Noted Opportunities
++ Condense / modularize portions of the various seed scripts provided as there are some repititive parts.
