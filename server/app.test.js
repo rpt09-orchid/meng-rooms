@@ -3,8 +3,12 @@ const app = require('./app.js');
 
 const request = supertest(app);
 
-jest.mock('../database/models/room.js');
-const Room = require('../database/models/room.js');
+function mockFunctions() {
+  return {findByID: jest.fn()}
+}
+jest.mock('../database/models/room.js', () => mockFunctions());
+const storage = require.requireMock('../database/models/room.js');
+
 
 describe('server', () => {
   describe('requests to /', () => {
@@ -32,7 +36,7 @@ describe('server', () => {
 
   describe('requests to /details/:id', () => {
     test('it should return JSON with a \'data\' key for route \'1/details\'', (done) => {
-      Room.findByID.mockImplementation((id, cb) => {
+      storage.findByID.mockImplementation((id, cb) => {
         cb(null, [{ id: 'this is a test' }]);
       });
       request.get('/details/1').then((response) => {
@@ -49,7 +53,7 @@ describe('server', () => {
     });
 
     test('it should return 404 for an invalid endpoint', (done) => {
-      Room.findByID.mockImplementation((id, cb) => {
+      storage.findByID.mockImplementation((id, cb) => {
         cb('error', null);
       });
       request.get('/details/1').then((response) => {

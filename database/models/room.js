@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 const roomSchema = mongoose.Schema({
   id: { type: Number, unique: true },
   user: { type: String, required: true },
@@ -27,5 +28,5 @@ const insertOne = (room, callback) => {
 module.exports = {
   findByID,
   insertOne,
-  RoomModel,
+  RoomModel
 };

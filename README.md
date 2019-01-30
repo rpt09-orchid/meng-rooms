@@ -150,3 +150,23 @@ When I used the `Mongoose`, I validated the data with a model during my insertio
 
 ## Backlog / Noted Opportunities
 + Condense / modularize portions of the various seed scripts provided as there are some repititive parts.
+
+
+Of Note:
+
+The jest tests were not passing from the legacy code this is because the RoomModel object should have been added to the `room.js` export.  When that was added, the jest tests broke.  The jest tests broke because it is trying to mock RoomModel.  I had to figure out a way for the jest.mock to disregard the RoomModel when attempting a mock - this is because the RoomModel is never used in the original jesttests.
+
+```
+function mockFunctions() {
+  return {findByID: jest.fn()}
+}
+jest.mock('../database/models/room.js', () => mockFunctions());
+const storage = require.requireMock('../database/models/room.js');
+```
+
+and to call the test, we would execute something like:
+```
+  storage.findByID.mockImplementation((id, cb) => {
+    cb(null, [{ id: 'this is a test' }]);
+  });
+```

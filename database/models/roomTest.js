@@ -22,5 +22,5 @@ const insertOne = (room, callback) => {
 module.exports = {
   findByID,
   insertOne,
-  RoomModel,
+  RoomModel
 };
