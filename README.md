@@ -32,9 +32,9 @@ If you haven't already, start your MongoDB service then seed the database with 1
 npm run seed-database
 ```
 
-[Optional] If you would like to seed 10 million records instead of 100 records, you may do so by running
+[Optional] If you would like to seed 10 million records instead of 100 records in a mongo database, you may do so by running
 ```sh
-npm run seed-large-database
+npm run seed-large-database-mongo
 ```
 
 Build the webpack bundle by running
@@ -50,6 +50,36 @@ npm run server-dev
 ```
 
 and finally, on your browser go to http://localhost:3001
+
+
+### 1.3.1. Install PostgreSQL and Create Rooms Database
+
+In terminal:
+1. Install PostgreSQL:`brew install postgresql` (this example uses PostgreSQL version 10.5) (to explore other non-brew options too install PostgreSQL, click [here](https://www.postgresql.org/download/macosx/) for Mac options and click [here](https://www.postgresql.org/download/windows/) for Windows options)
+2. Start PostgresSQL:`brew services start postgresql`
+3. Create `roomsDB`: `createdb roomsDB`
+
+#### 1.3.1.1. Of Note:
++ To enter PostgreSQL cli (db name is `roomsDB`): <pre>psql <i>dbNameHere</i></pre>
++ To view all current psql databases in terminal: `psql -l`
++ To view all tables in PostgreSQL cli: `\dt`
++ To describe table in PostgreSQL cli (table name is `rooms`):
+<pre>
+\d+ <i>tableNameHere</i>
+</pre>
++ To view all databases in PostgreSQL cli: `\l`
++ To exit out of PostgreSQL cli: `\q`
++ If neccessary, to grant a specific user permissions to the table, log into psql as a super user and in the PostgreSQL cli (table name is `rooms`):
+<pre>
+GRANT ALL PRIVILEGES ON TABLE <i>tableNameHere</i> TO <i>userNameHere</i>
+GRANT USAGE ON SCHEMA public TO <i>userNameHere</i>
+</pre>
++ `Schema` in mysql vs `Schema` in PostgreSQL can mean different things
+
+### 1.3.2. Set Up Environment Variables
+1. Create a `.env` file to set up your variables: `cp .env-sample .env`
+2. Open the `.env` file and fill in the `HOST`, `DBUSERNAME`, `DBPASSWORD` and `DBPORT` (database server port) fields (default `DBPORT` is `5432`)
+
 
 ## Log
 
