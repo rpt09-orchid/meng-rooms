@@ -83,7 +83,7 @@ GRANT USAGE ON SCHEMA public TO <i>userNameHere</i>
 
 ## Log
 
-###  Goal 1 - Generate 10 Million Records
+###  Goal 1 - Generate 10 Million Records in Legacy Database
 
 Of note, for this goal - I wanted a minimum of 1000 records to be unique.
 
@@ -141,6 +141,32 @@ Other testing factors to try in the future:
 
 + Adding ids only in Mongo
 + Adding ids in the .json file
+
+I learned that when you have a model in mongoose where unique is set - an index is automatically created for you.
+
+###  Goal 2 - Generate 10 Million Records in PostGres Database and create api call
+
+Of note, for this goal - I wanted a minimum of 1000 records to be unique.  I wanted to change as little existing code as possible.
+
+What I used: I used a npm package title `fast-csv` which wrote my array of unique records into a .csv file.  It was tricky because, again, the data shape for this service included nested arrays / objects.  To help with this, I had to use the `transform` function of `fast-csv` to stringify the nested arrays in lieu of `[Object]` written into the .csv.
+
+It took 10.78 minutes to generate my postgres database.
+![2019-02-01_17-41-49](https://user-images.githubusercontent.com/7980628/52158023-e4d25080-2648-11e9-99eb-f0a7f1e0da48.png)
+![2019-02-01_17-41-06](https://user-images.githubusercontent.com/7980628/52158024-e865d780-2648-11e9-90d8-ceca569e9fd3.png)
+
+
+System Design:
+Because I wanted to change as little code as possible, I still had to flush out the new api for the postgres database - happy to report - you only need to touch one line of code to convert the legacy mongo connection to post gres (used similar naming schemes for postgres).  This is true if you would like to change back to mongodb from postgres.
+
+What I learned:
+
+
+What I appreciated:
++ Postgres supports JSON objects - and so even though I had the nested arrays, when I queried the postgres database, I recieved the unparsed object.  I did not have to modify the API what so ever.
+
+Features:
++ Created a dynamic progress bar when the imports were happening in the postgres database.
+
 
 ## Glossary
 + **5 ff (5 faker fields)**

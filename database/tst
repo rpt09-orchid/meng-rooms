@@ -1,0 +1,41 @@
+[ { id: 1,
+    descriptions: [ [Object], [Object], [Object], [Object], [Object] ],
+    amenities:
+     [ 'Kitchen',
+       'Iron',
+       'Free parking on premises',
+       'Wifi',
+       'Hangers',
+       'Laptop friendly workspace' ],
+    sleepingarrangements: [ [Object] ],
+    user: 'Brody Rutherford',
+    avatar:
+     'https://s3-us-west-2.amazonaws.com/rpt-09-mulder-avatars/person1.jpg',
+    title: 'ipsa',
+    type: 'Shared Room',
+    city: 'Lake Dina',
+    selfcheckin: false,
+    superhost: false } ]
+
+
+
+  mongoose
+
+  [ { descriptions: [ [Object], [Object], [Object], [Object], [Object] ],
+    amenities:
+     [ 'Kitchen',
+       'Iron',
+       'Free parking on premises',
+       'Wifi',
+       'Hangers',
+       'Laptop friendly workspace' ],
+    sleepingArrangements: [ [Object] ],
+    user: 'Aliyah Beer Jr.',
+    avatar:
+     'https://s3-us-west-2.amazonaws.com/rpt-09-mulder-avatars/person1.jpg',
+    title: 'vero',
+    type: 'Private Room',
+    city: 'Watersstad',
+    selfCheckin: false,
+    superhost: true,
+    id: 1 } ]
