@@ -3,10 +3,11 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors');
 const morgan = require('morgan');
-// const Room = require('../database/models/room.js');
-const Room = require('../database/pg_utilities.js');
+
 
 const app = express();
+app.databaseSelected = "mongo";
+const Room = typeof app.databaseSelected === 'undefined' ? require('../database/pg_utilities.js') : require('../database/models/room.js');
 
 if (process.env.NODE_ENV === 'production') {
   app.use(morgan('tiny'));
@@ -27,7 +28,6 @@ app.get('/details/:id', (req, res) => {
     if (err) {
       res.status(404).json({ error: `ID ${req.params.id} does not exist in database` });
     } else {
-
       res.json({ data: roomInfo });
     }
   });

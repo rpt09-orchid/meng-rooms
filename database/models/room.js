@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-
+const db = mongoose.connection;
 const roomSchema = mongoose.Schema({
   id: { type: Number, unique: true },
   user: { type: String, required: true },
@@ -18,6 +18,7 @@ const roomSchema = mongoose.Schema({
 const RoomModel = mongoose.model('Room', roomSchema);
 
 const findByID = (id, callback) => {
+
   RoomModel.find({ id }, callback);
 };
 

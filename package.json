@@ -9,9 +9,11 @@
   },
   "scripts": {
     "react-dev": "webpack -d --watch",
+    "start-dev": "node server/server.js",
     "server-dev": "NODE_ENV=development nodemon server/server.js",
     "seed-database": "node ./database/seed.js",
     "seed-large-database-mongo": "node ./database/seedInsert.js",
+    "seed-large-database": "node ./database/seedPostGres.js",
     "test-jest": "jest",
     "build": "webpack -p",
     "start": "node server/server.js"

@@ -1,6 +1,10 @@
 const supertest = require('supertest');
 const app = require('./app.js');
 
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rooms');
+const db = mongoose.connection;
+
 const request = supertest(app);
 
 function mockFunctions() {
@@ -52,24 +56,23 @@ describe('server', () => {
       });
     });
 
-    test('it should return 404 for an invalid endpoint', (done) => {
+    if(app.databaseSelected) test('it should return 404 for an invalid endpoint', (done) => {
       storage.findByID.mockImplementation((id, cb) => {
-        cb('error', null);
+          cb('error', null);
+        });
+        request.get('/details/1').then((response) => {
+          expect(response.statusCode).toBe(404);
+          done();
+        });
       });
-      request.get('/details/1').then((response) => {
-        expect(response.statusCode).toBe(404);
-        done();
-      });
-    });
 
-    test('response message for the invalid message should contain the id', (done) => {
-      request.get('/details/1').then((response) => {
-        expect(response.body.error).toBe('ID 1 does not exist in database');
-        done();
+      if(app.databaseSelected) test('response message for the invalid message should contain the id', (done) => {
+        request.get('/details/1').then((response) => {
+          expect(response.body.error).toBe('ID 1 does not exist in database');
+          done();
+        });
       });
-    });
   });
-  describe('database query times', () => {
 
-  })
+
 });

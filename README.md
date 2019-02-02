@@ -80,7 +80,11 @@ GRANT USAGE ON SCHEMA public TO <i>userNameHere</i>
 1. Create a `.env` file to set up your variables: `cp .env-sample .env`
 2. Open the `.env` file and fill in the `HOST`, `DBUSERNAME`, `DBPASSWORD` and `DBPORT` (database server port) fields (default `DBPORT` is `5432`)
 
+To seed mongo:
+npm run seed-large-database-mongo
 
+for post gres:
+seed-large-database
 ## Log
 
 ###  Goal 1 - Generate 10 Million Records in Legacy Database
@@ -153,6 +157,8 @@ What I used: I used a npm package title `fast-csv` which wrote my array of uniqu
 It took 10.78 minutes to generate my postgres database.
 ![2019-02-01_17-41-49](https://user-images.githubusercontent.com/7980628/52158023-e4d25080-2648-11e9-99eb-f0a7f1e0da48.png)
 ![2019-02-01_17-41-06](https://user-images.githubusercontent.com/7980628/52158024-e865d780-2648-11e9-90d8-ceca569e9fd3.png)
+![2019-02-01_22-10-08](https://user-images.githubusercontent.com/7980628/52160768-ff6bf000-266f-11e9-932e-b19ae10151e9.png)
+![2019-02-01_22-25-47](https://user-images.githubusercontent.com/7980628/52160797-5b367900-2670-11e9-8560-3a3b010b8411.png)
 
 
 System Design:
