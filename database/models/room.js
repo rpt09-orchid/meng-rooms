@@ -28,5 +28,9 @@ const insertOne = (room, callback) => {
 module.exports = {
   findByID,
   insertOne,
+<<<<<<< HEAD
   RoomModel
+=======
+  RoomModel,
+>>>>>>> master
 };
