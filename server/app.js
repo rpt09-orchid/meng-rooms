@@ -6,7 +6,7 @@ const morgan = require('morgan');
 
 
 const app = express();
-app.databaseSelected = "mongo";
+// app.databaseSelected = "mongo";
 const Room = typeof app.databaseSelected === 'undefined' ? require('../database/pg_utilities.js') : require('../database/models/room.js');
 
 if (process.env.NODE_ENV === 'production') {

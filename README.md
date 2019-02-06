@@ -1,6 +1,6 @@
 # Systems Design Project for Rooms Service
 
-The focus of this project is to take the legacy project [`Rooms Service`]((https://github.com/rpt09-mulder/rooms)) and optimize back-end database and querying performance.
+The goal of this project is to take the legacy project [`Rooms Service`]((https://github.com/rpt09-mulder/rooms)) and optimize back-end database and querying performance.
 
 ## Table Of Contents:
 + [Related Projects](#Related-Projects)
@@ -18,25 +18,11 @@ The focus of this project is to take the legacy project [`Rooms Service`]((https
 - MongoDB v4.0.3
 - NPM v6.5.0
 
-## Installation
-
+## Set Up
 After cloning the project, go to the root directory then install all required dependencies by running
-
 ```sh
 npm install
 ```
-
-If you haven't already, start your MongoDB service then seed the database with 100 records by running
-
-```sh
-npm run seed-database
-```
-
-[Optional] If you would like to seed 10 million records instead of 100 records in a mongo database, you may do so by running
-```sh
-npm run seed-large-database-mongo
-```
-
 Build the webpack bundle by running
 
 ```sh
@@ -48,18 +34,31 @@ Wait for the build to complete then start the server by running
 ```sh
 npm run server-dev
 ```
-
 and finally, on your browser go to http://localhost:3001
 
+## Database Installation:
 
-### 1.3.1. Install PostgreSQL and Create Rooms Database
+### For Mongo
+
+If you haven't already, start your MongoDB service then seed the database with 100 records by running
+
+```sh
+npm run seed-database
+```
+
+[Optional] If you would like to seed 10 million records in **mongo** instead, you may do so by running
+```sh
+npm run seed-large-database-mongo
+```
+
+### For PostgreSQL (**Preferred**)
 
 In terminal:
 1. Install PostgreSQL:`brew install postgresql` (this example uses PostgreSQL version 10.5) (to explore other non-brew options too install PostgreSQL, click [here](https://www.postgresql.org/download/macosx/) for Mac options and click [here](https://www.postgresql.org/download/windows/) for Windows options)
 2. Start PostgresSQL:`brew services start postgresql`
 3. Create `roomsDB`: `createdb roomsDB`
 
-#### 1.3.1.1. Of Note:
+#### Of Note:
 + To enter PostgreSQL cli (db name is `roomsDB`): <pre>psql <i>dbNameHere</i></pre>
 + To view all current psql databases in terminal: `psql -l`
 + To view all tables in PostgreSQL cli: `\dt`
@@ -76,15 +75,13 @@ GRANT USAGE ON SCHEMA public TO <i>userNameHere</i>
 </pre>
 + `Schema` in mysql vs `Schema` in PostgreSQL can mean different things
 
-### 1.3.2. Set Up Environment Variables
+### Set Up Environment Variables
 1. Create a `.env` file to set up your variables: `cp .env-sample .env`
 2. Open the `.env` file and fill in the `HOST`, `DBUSERNAME`, `DBPASSWORD` and `DBPORT` (database server port) fields (default `DBPORT` is `5432`)
 
-To seed mongo:
-npm run seed-large-database-mongo
+### Seed PostgreSQL Database
+To see 10 million records - in terminal, run `npm run seed-large-database`.
 
-for post gres:
-seed-large-database
 ## Log
 
 ###  Goal 1 - Generate 10 Million Records in Legacy Database
@@ -107,7 +104,7 @@ What I Did / Learned:
 <br/>
 
 
-#### Testing Matrix
+### Testing Matrix
 Please note, results seen in the same table were experiments done on the same day.  For abbreviated terms, see the [Glossary](#Glossary).
 
 ### Insert Many, Using Mongo Driver Insertion ([seedInsertTestUnique10mil.js](database/seedTestFiles/seedInsertTestUnique10mil.js)), [seedInsertTestUnique1k.js](database/seedTestFiles/seedInsertTestUnique1k.js))
@@ -146,7 +143,7 @@ Other testing factors to try in the future:
 + Adding ids only in Mongo
 + Adding ids in the .json file
 
-I learned that when you have a model in mongoose where unique is set - an index is automatically created for you.
+
 
 ###  Goal 2 - Generate 10 Million Records in PostGres Database and create api call
 
@@ -156,9 +153,8 @@ What I used: I used a npm package title `fast-csv` which wrote my array of uniqu
 
 It took 10.78 minutes to generate my postgres database.
 ![2019-02-01_17-41-49](https://user-images.githubusercontent.com/7980628/52158023-e4d25080-2648-11e9-99eb-f0a7f1e0da48.png)
-![2019-02-01_17-41-06](https://user-images.githubusercontent.com/7980628/52158024-e865d780-2648-11e9-90d8-ceca569e9fd3.png)
-![2019-02-01_22-10-08](https://user-images.githubusercontent.com/7980628/52160768-ff6bf000-266f-11e9-932e-b19ae10151e9.png)
-![2019-02-01_22-25-47](https://user-images.githubusercontent.com/7980628/52160797-5b367900-2670-11e9-8560-3a3b010b8411.png)
+
+
 
 
 System Design:
@@ -173,6 +169,19 @@ What I appreciated:
 Features:
 + Created a dynamic progress bar when the imports were happening in the postgres database.
 
+![2019-02-01_17-41-06](https://user-images.githubusercontent.com/7980628/52158024-e865d780-2648-11e9-90d8-ceca569e9fd3.png)
+
+### Goal 3 Compare PostGres and Mongo Query Results:
+
+PostgreSQL Results
+![PostGres Query Results](https://user-images.githubusercontent.com/7980628/52160768-ff6bf000-266f-11e9-932e-b19ae10151e9.png)
+
+Mongo Results
+![Mongo Results](https://user-images.githubusercontent.com/7980628/52160797-5b367900-2670-11e9-8560-3a3b010b8411.png)
+
+I learned that when you have a model in mongoose where unique is set - an index is automatically created for you.
+
+Conclusion: Postgres is way faster
 
 ## Glossary
 + **5 ff (5 faker fields)**

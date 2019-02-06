@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-const db = mongoose.connection;
 const roomSchema = mongoose.Schema({
   id: { type: Number, unique: true },
   user: { type: String, required: true },
