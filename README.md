@@ -1,10 +1,6 @@
 # Systems Design Project for Rooms Service
 
-<<<<<<< HEAD
 The goal of this project is to take the legacy project [`Rooms Service`]((https://github.com/rpt09-mulder/rooms)) and optimize back-end database and querying performance.
-=======
-The focus of this project is to take the legacy project [`Rooms Service`]((https://github.com/rpt09-mulder/rooms)) and optimize back-end database and querying performance.
->>>>>>> master
 
 ## Table Of Contents:
 + [Related Projects](#Related-Projects)
@@ -22,7 +18,6 @@ The focus of this project is to take the legacy project [`Rooms Service`]((https
 - MongoDB v4.0.3
 - NPM v6.5.0
 
-<<<<<<< HEAD
 ## Set Up
 After cloning the project, go to the root directory then install all required dependencies by running
 ```sh
@@ -90,44 +85,6 @@ To see 10 million records - in terminal, run `npm run seed-large-database`.
 ## Log
 
 ###  Goal 1 - Generate 10 Million Records in Legacy Database
-=======
-## Installation
-
-After cloning the project, go to the root directory then install all required dependencies by running
-
-```sh
-npm install
-```
-
-If you haven't already, start your MongoDB service then seed the database with 100 records by running
-
-```sh
-npm run seed-database
-```
-
-[Optional] If you would like to seed 10 million records instead of 100 records, you may do so by running
-```sh
-npm run seed-large-database
-```
-
-Build the webpack bundle by running
-
-```sh
-npm run react-dev
-```
-
-Wait for the build to complete then start the server by running
-
-```sh
-npm run server-dev
-```
-
-and finally, on your browser go to http://localhost:3001
-
-## Log
-
-###  Goal 1 - Generate 10 Million Records
->>>>>>> master
 
 Of note, for this goal - I wanted a minimum of 1000 records to be unique.
 
@@ -147,11 +104,7 @@ What I Did / Learned:
 <br/>
 
 
-<<<<<<< HEAD
 ### Testing Matrix
-=======
-#### Testing Matrix
->>>>>>> master
 Please note, results seen in the same table were experiments done on the same day.  For abbreviated terms, see the [Glossary](#Glossary).
 
 ### Insert Many, Using Mongo Driver Insertion ([seedInsertTestUnique10mil.js](database/seedTestFiles/seedInsertTestUnique10mil.js)), [seedInsertTestUnique1k.js](database/seedTestFiles/seedInsertTestUnique1k.js))
@@ -190,7 +143,6 @@ Other testing factors to try in the future:
 + Adding ids only in Mongo
 + Adding ids in the .json file
 
-<<<<<<< HEAD
 
 
 ###  Goal 2 - Generate 10 Million Records in PostGres Database and create api call
@@ -231,8 +183,6 @@ I learned that when you have a model in mongoose where unique is set - an index 
 
 Conclusion: Postgres is way faster
 
-=======
->>>>>>> master
 ## Glossary
 + **5 ff (5 faker fields)**
 ```javascript
@@ -270,7 +220,6 @@ When I used the `Mongoose`, I validated the data with a model during my insertio
 
 
 ## Backlog / Noted Opportunities
-<<<<<<< HEAD
 + Condense / modularize portions of the various seed scripts provided as there are some repititive parts.
 
 
@@ -292,6 +241,3 @@ and to call the test, we would execute something like:
     cb(null, [{ id: 'this is a test' }]);
   });
 ```
-=======
-+ Condense / modularize portions of the various seed scripts provided as there are some repititive parts.
->>>>>>> master

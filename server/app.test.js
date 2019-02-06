@@ -1,13 +1,10 @@
 const supertest = require('supertest');
 const app = require('./app.js');
 
-<<<<<<< HEAD
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rooms');
 const db = mongoose.connection;
 
-=======
->>>>>>> master
 const request = supertest(app);
 
 function mockFunctions() {
@@ -16,10 +13,6 @@ function mockFunctions() {
 jest.mock('../database/models/room.js', () => mockFunctions());
 const storage = require.requireMock('../database/models/room.js');
 
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 describe('server', () => {
   describe('requests to /', () => {
     test('it should respond to a GET request', (done) => {
@@ -46,11 +39,7 @@ describe('server', () => {
 
   describe('requests to /details/:id', () => {
     test('it should return JSON with a \'data\' key for route \'1/details\'', (done) => {
-<<<<<<< HEAD
       storage.findByID.mockImplementation((id, cb) => {
-=======
-      Room.findByID.mockImplementation((id, cb) => {
->>>>>>> master
         cb(null, [{ id: 'this is a test' }]);
       });
       request.get('/details/1').then((response) => {
@@ -83,9 +72,6 @@ describe('server', () => {
         });
       });
   });
-<<<<<<< HEAD
 
 
-=======
->>>>>>> master
 });

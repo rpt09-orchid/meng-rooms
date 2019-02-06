@@ -1,6 +1,5 @@
 const faker = require('faker');
 
-<<<<<<< HEAD
 const clearConsole = () =>{
   process.stdout.clearLine();
   process.stdout.cursorTo(0);
@@ -10,11 +9,6 @@ const randoGenArrayFactory = (noDocsInSet, excludeId) => {
   const finalArray = [];
   let i = 0;
   process.stdout.write(`...generating ${noDocsInSet} unique records...`);
-=======
-const randoGenArrayFactory = (noDocsInSet) => {
-  const finalArray = [];
-  let i = 0;
->>>>>>> master
   while (i < noDocsInSet) {
     const fakeDescriptions = [
       {
@@ -60,10 +54,6 @@ const randoGenArrayFactory = (noDocsInSet) => {
     ];
 
     const roomDetail = {
-<<<<<<< HEAD
-=======
-      id: '',
->>>>>>> master
       user: faker.name.findName(),
       avatar: faker.random.arrayElement(
         ['https://s3-us-west-2.amazonaws.com/rpt-09-mulder-avatars/person1.jpg', 'https://s3-us-west-2.amazonaws.com/rpt-09-mulder-avatars/person2.jpg', 'https://s3-us-west-2.amazonaws.com/rpt-09-mulder-avatars/person3.jpg'],
@@ -80,7 +70,6 @@ const randoGenArrayFactory = (noDocsInSet) => {
       sleepingArrangements: fakeSleeping,
     };
 
-<<<<<<< HEAD
     if(!excludeId){
       roomDetail.id = '';
     }
@@ -94,13 +83,3 @@ const randoGenArrayFactory = (noDocsInSet) => {
 };
 
 module.exports = { randoGenArrayFactory, clearConsole };
-=======
-    finalArray.push(roomDetail);
-    console.log(i);
-    i++;
-  }
-  return finalArray;
-};
-
-module.exports = { randoGenArrayFactory };
->>>>>>> master
