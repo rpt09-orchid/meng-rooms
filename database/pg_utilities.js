@@ -12,8 +12,6 @@ let client = new Client(config);
 client.connect();
 
 const findByID = (id, callback) => {
-
-
   client.query(`SELECT * FROM rooms WHERE id = ${id}`, (err, res)=>{
     if(err){
       return callback(err);
@@ -22,8 +20,19 @@ const findByID = (id, callback) => {
   });
 };
 
+const deleteRecord = (id, callback) => {
+  client.query(`DELETE FROM rooms WHERE id = ${id}`, (err, res) => {
+    if(err){
+      console.log('Error during deletion...')
+      return callback(err);
+    }
+    callback(undefined, res);
+  });
+}
+
 
 
 module.exports = {
-  findByID
+  findByID,
+  deleteRecord
 };

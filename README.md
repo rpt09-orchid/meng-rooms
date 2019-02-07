@@ -34,6 +34,8 @@ Wait for the build to complete then start the server by running
 ```sh
 npm run server-dev
 ```
+
+note - if you use mongo, after starting the server - you may need to wait a couple of minutes for any results as a one-time index will be creating upon initial query.
 and finally, on your browser go to http://localhost:3001
 
 ## Database Installation:
@@ -121,7 +123,7 @@ Please note, results seen in the same table were experiments done on the same da
 ### InsertMany ([seedInsertTestUnique1k.js](database/seedTestFiles/seedInsertTestUnique1k.js))
 |                     	| Mongo Driver (Batched 1000)| Mongoose (Batched 1000)  |
 | ---------------------	| -------------------------- | -------------------------|
-| Unique (1,000)      	|           **5.29m**        |          **24.8m**       |
+| Unique (1,000)      	|           **5.29m (5ff)**        |          **24.8m (5ff)**       |
 + **Conclusion**:
 Definitely worthwhile to utilize the Mongo Driver `insertMany` method vs validating the insertion with a mongo model (i.e. the `Mongoose` method).
 <br/><br/>
@@ -179,7 +181,7 @@ PostgreSQL Results
 Mongo Results
 ![Mongo Results](https://user-images.githubusercontent.com/7980628/52160797-5b367900-2670-11e9-8560-3a3b010b8411.png)
 
-I learned that when you have a model in mongoose where unique is set - an index is automatically created for you.
+I learned that when you have a model in mongoose where unique is set - an index is automatically created for you when you access that model (whether it be when you first query, etc).  If you use the mongo db in this project, an index will most likely be created not if you seed (unless you used the mdoel when you seeded, but most likely when a GET request is sent to the api)
 
 Conclusion: Postgres is way faster
 
