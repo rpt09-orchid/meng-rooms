@@ -10,7 +10,6 @@ pids
 *.pid
 logs
 *.log
-seedFile/
 testSeed.json
 <<<<<<< HEAD
 .env
