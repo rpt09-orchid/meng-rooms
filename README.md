@@ -1,6 +1,6 @@
 # Systems Design Project for Rooms Service
 
-The focus of this project is to take the legacy project [`Rooms Service`]((https://github.com/rpt09-mulder/rooms)) and optimize back-end database and querying performance.
+The goal of this project is to take the legacy project [`Rooms Service`]((https://github.com/rpt09-mulder/rooms)) and optimize back-end database and querying performance.
 
 ## Table Of Contents:
 + [Related Projects](#Related-Projects)
@@ -18,25 +18,11 @@ The focus of this project is to take the legacy project [`Rooms Service`]((https
 - MongoDB v4.0.3
 - NPM v6.5.0
 
-## Installation
-
+## Set Up
 After cloning the project, go to the root directory then install all required dependencies by running
-
 ```sh
 npm install
 ```
-
-If you haven't already, start your MongoDB service then seed the database with 100 records by running
-
-```sh
-npm run seed-database
-```
-
-[Optional] If you would like to seed 10 million records instead of 100 records, you may do so by running
-```sh
-npm run seed-large-database
-```
-
 Build the webpack bundle by running
 
 ```sh
@@ -49,11 +35,58 @@ Wait for the build to complete then start the server by running
 npm run server-dev
 ```
 
+note - if you use mongo, after starting the server - you may need to wait a couple of minutes for any results as a one-time index will be creating upon initial query.
 and finally, on your browser go to http://localhost:3001
+
+## Database Installation:
+
+### For Mongo
+
+If you haven't already, start your MongoDB service then seed the database with 100 records by running
+
+```sh
+npm run seed-database
+```
+
+[Optional] If you would like to seed 10 million records in **mongo** instead, you may do so by running
+```sh
+npm run seed-large-database-mongo
+```
+
+### For PostgreSQL (**Preferred**)
+
+In terminal:
+1. Install PostgreSQL:`brew install postgresql` (this example uses PostgreSQL version 10.5) (to explore other non-brew options too install PostgreSQL, click [here](https://www.postgresql.org/download/macosx/) for Mac options and click [here](https://www.postgresql.org/download/windows/) for Windows options)
+2. Start PostgresSQL:`brew services start postgresql`
+3. Create `roomsDB`: `createdb roomsDB`
+
+#### Of Note:
++ To enter PostgreSQL cli (db name is `roomsDB`): <pre>psql <i>dbNameHere</i></pre>
++ To view all current psql databases in terminal: `psql -l`
++ To view all tables in PostgreSQL cli: `\dt`
++ To describe table in PostgreSQL cli (table name is `rooms`):
+<pre>
+\d+ <i>tableNameHere</i>
+</pre>
++ To view all databases in PostgreSQL cli: `\l`
++ To exit out of PostgreSQL cli: `\q`
++ If neccessary, to grant a specific user permissions to the table, log into psql as a super user and in the PostgreSQL cli (table name is `rooms`):
+<pre>
+GRANT ALL PRIVILEGES ON TABLE <i>tableNameHere</i> TO <i>userNameHere</i>
+GRANT USAGE ON SCHEMA public TO <i>userNameHere</i>
+</pre>
++ `Schema` in mysql vs `Schema` in PostgreSQL can mean different things
+
+### Set Up Environment Variables
+1. Create a `.env` file to set up your variables: `cp .env-sample .env`
+2. Open the `.env` file and fill in the `HOST`, `DBUSERNAME`, `DBPASSWORD` and `DBPORT` (database server port) fields (default `DBPORT` is `5432`)
+
+### Seed PostgreSQL Database
+To see 10 million records - in terminal, run `npm run seed-large-database`.
 
 ## Log
 
-###  Goal 1 - Generate 10 Million Records
+###  Goal 1 - Generate 10 Million Records in Legacy Database
 
 Of note, for this goal - I wanted a minimum of 1000 records to be unique.
 
@@ -73,7 +106,7 @@ What I Did / Learned:
 <br/>
 
 
-#### Testing Matrix
+### Testing Matrix
 Please note, results seen in the same table were experiments done on the same day.  For abbreviated terms, see the [Glossary](#Glossary).
 
 ### Insert Many, Using Mongo Driver Insertion ([seedInsertTestUnique10mil.js](database/seedTestFiles/seedInsertTestUnique10mil.js)), [seedInsertTestUnique1k.js](database/seedTestFiles/seedInsertTestUnique1k.js))
@@ -90,7 +123,7 @@ Please note, results seen in the same table were experiments done on the same da
 ### InsertMany ([seedInsertTestUnique1k.js](database/seedTestFiles/seedInsertTestUnique1k.js))
 |                     	| Mongo Driver (Batched 1000)| Mongoose (Batched 1000)  |
 | ---------------------	| -------------------------- | -------------------------|
-| Unique (1,000)      	|           **5.29m**        |          **24.8m**       |
+| Unique (1,000)      	|           **5.29m (5ff)**        |          **24.8m (5ff)**       |
 + **Conclusion**:
 Definitely worthwhile to utilize the Mongo Driver `insertMany` method vs validating the insertion with a mongo model (i.e. the `Mongoose` method).
 <br/><br/>
@@ -111,6 +144,46 @@ Other testing factors to try in the future:
 
 + Adding ids only in Mongo
 + Adding ids in the .json file
+
+
+
+###  Goal 2 - Generate 10 Million Records in PostGres Database and create api call
+
+Of note, for this goal - I wanted a minimum of 1000 records to be unique.  I wanted to change as little existing code as possible.
+
+What I used: I used a npm package title `fast-csv` which wrote my array of unique records into a .csv file.  It was tricky because, again, the data shape for this service included nested arrays / objects.  To help with this, I had to use the `transform` function of `fast-csv` to stringify the nested arrays in lieu of `[Object]` written into the .csv.
+
+It took 10.78 minutes to generate my postgres database.
+![2019-02-01_17-41-49](https://user-images.githubusercontent.com/7980628/52158023-e4d25080-2648-11e9-99eb-f0a7f1e0da48.png)
+
+
+
+
+System Design:
+Because I wanted to change as little code as possible, I still had to flush out the new api for the postgres database - happy to report - you only need to touch one line of code to convert the legacy mongo connection to post gres (used similar naming schemes for postgres).  This is true if you would like to change back to mongodb from postgres.
+
+What I learned:
+
+
+What I appreciated:
++ Postgres supports JSON objects - and so even though I had the nested arrays, when I queried the postgres database, I recieved the unparsed object.  I did not have to modify the API what so ever.
+
+Features:
++ Created a dynamic progress bar when the imports were happening in the postgres database.
+
+![2019-02-01_17-41-06](https://user-images.githubusercontent.com/7980628/52158024-e865d780-2648-11e9-90d8-ceca569e9fd3.png)
+
+### Goal 3 Compare PostGres and Mongo Query Results:
+
+PostgreSQL Results
+![PostGres Query Results](https://user-images.githubusercontent.com/7980628/52160768-ff6bf000-266f-11e9-932e-b19ae10151e9.png)
+
+Mongo Results
+![Mongo Results](https://user-images.githubusercontent.com/7980628/52160797-5b367900-2670-11e9-8560-3a3b010b8411.png)
+
+I learned that when you have a model in mongoose where unique is set - an index is automatically created for you when you access that model (whether it be when you first query, etc).  If you use the mongo db in this project, an index will most likely be created not if you seed (unless you used the mdoel when you seeded, but most likely when a GET request is sent to the api)
+
+Conclusion: Postgres is way faster
 
 ## Glossary
 + **5 ff (5 faker fields)**
@@ -150,3 +223,23 @@ When I used the `Mongoose`, I validated the data with a model during my insertio
 
 ## Backlog / Noted Opportunities
 + Condense / modularize portions of the various seed scripts provided as there are some repititive parts.
+
+
+Of Note:
+
+The jest tests were not passing from the legacy code this is because the RoomModel object should have been added to the `room.js` export.  When that was added, the jest tests broke.  The jest tests broke because it is trying to mock RoomModel.  I had to figure out a way for the jest.mock to disregard the RoomModel when attempting a mock - this is because the RoomModel is never used in the original jesttests.
+
+```
+function mockFunctions() {
+  return {findByID: jest.fn()}
+}
+jest.mock('../database/models/room.js', () => mockFunctions());
+const storage = require.requireMock('../database/models/room.js');
+```
+
+and to call the test, we would execute something like:
+```
+  storage.findByID.mockImplementation((id, cb) => {
+    cb(null, [{ id: 'this is a test' }]);
+  });
+```

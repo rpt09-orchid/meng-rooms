@@ -16,7 +16,7 @@ const noDocsInSet = 1000;
 let round = 1;
 let idCounter = 1;
 
-const parseFactory = () => new Promise(((resolve, reject) => {
+const parseFactory = () => new Promise((resolve, reject) => {
   let i = 0;
   insertedArray = JSON.parse(JSON.stringify(finalArray.slice()));
   while (i < noDocsInSet) {
@@ -24,8 +24,8 @@ const parseFactory = () => new Promise(((resolve, reject) => {
     i++;
   }
   resolve();
-}));
-const insertionFactory = () => new Promise(((resolve, reject) => {
+});
+const insertionFactory = () => new Promise((resolve, reject) => {
   db.collection('rooms').insertMany(insertedArray, (error, doc) => {
     if (error) {
       console.log(error);
@@ -34,7 +34,7 @@ const insertionFactory = () => new Promise(((resolve, reject) => {
       resolve();
     }
   });
-}));
+});
 
 const doEverything = async () => {
   const startTime = Date.now();

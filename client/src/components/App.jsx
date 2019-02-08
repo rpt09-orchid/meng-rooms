@@ -5,36 +5,52 @@ import Summary from './Summary';
 import Details from './Details';
 import Amenities from './Amenities';
 import '../../styles/App.css';
+let URL = 'http://localhost:3001/details';
+let id = '/1';
+if (process.env.NODE_ENV === 'production') {
+  // URL = 'http://rooms.4gk2mkr3wk.us-west-2.elasticbeanstalk.com/details'
+  URL = 'https://firebnb-rooms.herokuapp.com/details'
+}
+if (window.location.pathname !== '/') {
+  id = window.location.pathname;
+}
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       data: null,
+      is404: false,
+      isIdDeleted: false
     };
+    this.deleteRecordHandler = this.deleteRecordHandler.bind(this);
   }
 
   componentDidMount() {
-    let id = '/1';
-    let URL = 'http://localhost:3001/details';
-    if (process.env.NODE_ENV === 'production') {
-      // URL = 'http://rooms.4gk2mkr3wk.us-west-2.elasticbeanstalk.com/details'
-      URL = 'https://firebnb-rooms.herokuapp.com/details'
-    }
-    if (window.location.pathname !== '/') {
-      id = window.location.pathname;
-    }
-
     axios.get(`${URL}${id}`).then((res) => {
+      this.setState({data: res.data.data[0]});
+    })
+    .catch( () => {
       this.setState({
-        // redundancy because axios returns data through res.data
-        data: res.data.data[0],
-      });
+        is404: true
+      })
     });
   }
 
+  deleteRecordHandler () {
+    axios.delete(`${URL}${id}`).then((res) => {
+      if(res.statusText === "OK"){
+        this.setState({
+          data: null,
+          isIdDeleted: true
+        })
+      }
+    })
+  }
   render() {
-    const { data } = this.state;
+
+    const { data, is404, isIdDeleted } = this.state;
+
     if (data !== null) {
       const {
         type,
@@ -55,6 +71,7 @@ class App extends React.Component {
             title={title}
             city={city}
             user={user}
+            deleteRecordHandler = {this.deleteRecordHandler}
           />
           <Summary
             sleepingArrangements={sleepingArrangements}
@@ -70,6 +87,14 @@ class App extends React.Component {
             amenities={amenities}
           />
         </div>
+      );
+    } else if(is404){
+      return (
+        <div>No such id exists - try again!</div>
+      );
+    } else if(isIdDeleted){
+      return (
+        <div>Succesfully Deleted!</div>
       );
     }
     return (

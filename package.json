@@ -9,9 +9,11 @@
   },
   "scripts": {
     "react-dev": "webpack -d --watch",
+    "start-dev": "node server/server.js",
     "server-dev": "NODE_ENV=development nodemon server/server.js",
     "seed-database": "node ./database/seed.js",
-    "seed-large-database": "node ./database/seedInsert.js",
+    "seed-large-database-mongo": "node ./database/seedInsert.js",
+    "seed-large-database": "node ./database/seedPostGres.js",
     "test-jest": "jest",
     "build": "webpack -p",
     "start": "node server/server.js"
@@ -23,9 +25,13 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "fast-csv": "^2.4.1",
     "mongoose": "^5.3.14",
     "morgan": "^1.9.1",
+    "pg": "^7.8.0",
+    "pgtools": "^0.3.0",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3"

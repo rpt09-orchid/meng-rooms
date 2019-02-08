@@ -17,6 +17,7 @@ const roomSchema = mongoose.Schema({
 const RoomModel = mongoose.model('Room', roomSchema);
 
 const findByID = (id, callback) => {
+
   RoomModel.find({ id }, callback);
 };
 
@@ -27,5 +28,5 @@ const insertOne = (room, callback) => {
 module.exports = {
   findByID,
   insertOne,
-  RoomModel,
+  RoomModel
 };

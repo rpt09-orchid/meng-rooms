@@ -1,10 +1,17 @@
 const supertest = require('supertest');
 const app = require('./app.js');
 
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rooms');
+const db = mongoose.connection;
+
 const request = supertest(app);
 
-jest.mock('../database/models/room.js');
-const Room = require('../database/models/room.js');
+function mockFunctions() {
+  return {findByID: jest.fn()}
+}
+jest.mock('../database/models/room.js', () => mockFunctions());
+const storage = require.requireMock('../database/models/room.js');
 
 describe('server', () => {
   describe('requests to /', () => {
@@ -32,7 +39,7 @@ describe('server', () => {
 
   describe('requests to /details/:id', () => {
     test('it should return JSON with a \'data\' key for route \'1/details\'', (done) => {
-      Room.findByID.mockImplementation((id, cb) => {
+      storage.findByID.mockImplementation((id, cb) => {
         cb(null, [{ id: 'this is a test' }]);
       });
       request.get('/details/1').then((response) => {
@@ -48,21 +55,23 @@ describe('server', () => {
       });
     });
 
-    test('it should return 404 for an invalid endpoint', (done) => {
-      Room.findByID.mockImplementation((id, cb) => {
-        cb('error', null);
+    if(app.databaseSelected) test('it should return 404 for an invalid endpoint', (done) => {
+      storage.findByID.mockImplementation((id, cb) => {
+          cb('error', null);
+        });
+        request.get('/details/1').then((response) => {
+          expect(response.statusCode).toBe(404);
+          done();
+        });
       });
-      request.get('/details/1').then((response) => {
-        expect(response.statusCode).toBe(404);
-        done();
-      });
-    });
 
-    test('response message for the invalid message should contain the id', (done) => {
-      request.get('/details/1').then((response) => {
-        expect(response.body.error).toBe('ID 1 does not exist in database');
-        done();
+      if(app.databaseSelected) test('response message for the invalid message should contain the id', (done) => {
+        request.get('/details/1').then((response) => {
+          expect(response.body.error).toBe('ID 1 does not exist in database');
+          done();
+        });
       });
-    });
   });
+
+
 });

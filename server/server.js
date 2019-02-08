@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 const app = require('./app.js');
 
-mongoose.connect((process.env.MONGODB_URI || 'mongodb://localhost/rooms'), { useNewUrlParser: true });
+// mongoose.connect((process.env.MONGODB_URI || 'mongodb://localhost/rooms'), { useNewUrlParser: true });
 
-const db = mongoose.connection;
-db.on('error', (err) => {
-  console.log('error connecting', err);
-});
-db.once('open', () => {
-  console.log('mongoose connected');
-});
+// const db = mongoose.connection;
+// db.on('error', (err) => {
+//   console.log('error connecting', err);
+// });
+// db.once('open', () => {
+//   console.log('mongoose connected');
+// });
 
 const port = process.env.PORT || 3001;
 
