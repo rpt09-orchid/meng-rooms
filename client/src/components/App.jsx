@@ -7,9 +7,10 @@ import Amenities from './Amenities';
 import '../../styles/App.css';
 let URL = 'http://localhost:3001/details';
 let id = '/1';
+console.log("hey", process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'production') {
   // URL = 'http://rooms.4gk2mkr3wk.us-west-2.elasticbeanstalk.com/details'
-  URL = 'https://firebnb-rooms.herokuapp.com/details'
+  URL = 'http://ec2-13-52-103-229.us-west-1.compute.amazonaws.com/details'
 }
 if (window.location.pathname !== '/') {
   id = window.location.pathname;
