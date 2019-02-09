@@ -243,3 +243,18 @@ and to call the test, we would execute something like:
     cb(null, [{ id: 'this is a test' }]);
   });
 ```
+aws issues - I had to change my postgres seed script so the psql command had `-h ${config.host}...`
+
+why did I need to do that?
+
+
+steps to aws remote db access:
+
+in aws, had to root user and
+add the following row to bottom of file: pg_hba.conf
+
+host all all 0.0.0.0/0
+
+then had to edit "inbound" settings in a security group in aws - for my instance - added postgress / port (all) (anywhere)
+
+https://bosnadev.com/2015/12/15/allow-remote-connections-postgresql-database-server/
