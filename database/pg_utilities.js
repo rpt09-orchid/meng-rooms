@@ -12,7 +12,7 @@ let client = new Client(config);
 client.connect();
 
 const findByID = (id, callback) => {
-  client.query(`SELECT * FROM rooms WHERE id = ${id}`, (err, res)=>{
+  client.query(`SELECT * FROM rooms WHERE id = $1`, [id], (err, res)=>{
     if(err){
       return callback(err);
     }

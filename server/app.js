@@ -45,6 +45,7 @@ app.delete('/details/:id', (req, res) => {
 
 app.get('/users/:id', (req, res) => {
   Room.findByID(req.params.id, (err, roomInfo) => {
+
     if (err || !roomInfo[0]) {
       res.status(404).json({ error: `ID ${req.params.id} does not exist in database` });
     } else {

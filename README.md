@@ -247,6 +247,7 @@ aws issues - I had to change my postgres seed script so the psql command had `-h
 
 why did I need to do that?
 
+https://websiteforstudents.com/install-the-latest-node-js-and-nmp-packages-on-ubuntu-16-04-18-04-lts/
 
 steps to aws remote db access:
 
@@ -258,3 +259,5 @@ host all all 0.0.0.0/0
 then had to edit "inbound" settings in a security group in aws - for my instance - added postgress / port (all) (anywhere)
 
 https://bosnadev.com/2015/12/15/allow-remote-connections-postgresql-database-server/
+
+https://gist.github.com/kentbrew/776580

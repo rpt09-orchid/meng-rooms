@@ -48,7 +48,7 @@ class App extends React.Component {
     })
   }
   render() {
-
+    console.log(process.env);
     const { data, is404, isIdDeleted } = this.state;
 
     if (data !== null) {
